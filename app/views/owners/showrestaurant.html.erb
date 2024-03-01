@@ -1,0 +1,42 @@
+<%= render partial: 'partials/ownerheader' %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+</head>
+<body>
+<h1>Restaurant Details</h1>
+<table>
+  <tr>
+    <th>Restaurant Name</th>
+    <th>Restaurant Address</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @restaurant.each do |restaurant| %>
+    <tr>
+      <td><%= restaurant.name  %></td>
+      <td><%= restaurant.address %></td>
+      <td><%= button_to 'Delete'%></td>
+    </tr>
+  <h3>We Have Total <%= restaurant.staff.count %> Staff And <%= restaurant.items.count %> Items Of Variety. </h3>
+  
+  <% end %>
+</table>
+</body>
+</html>

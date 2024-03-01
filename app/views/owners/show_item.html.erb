@@ -1,0 +1,48 @@
+<%= render partial: 'partials/ownerheader' %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+</head>
+<body>
+<h1>Items Details</h1>
+<table>
+  <tr>
+    <th> Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Image</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @item.each do |item| %>
+    <tr>
+      <td><%= item.name  %></td>
+      <td><%= item.description %></td>
+      <td><%= item.price %></td>
+      <td><% if item.image.attached? %>
+      <%= image_tag(item.image, size: '50x50') %>
+      <% else %>
+      <p>No image available</p>
+      <% end %></td>
+      <td><%= button_to 'Delete', delete_item_path(item),method: :delete%></td>
+    </tr>
+  <% end %>
+</table>
+</body>
+</html>

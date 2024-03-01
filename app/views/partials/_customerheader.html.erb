@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover {
+        background-color: #111;
+      }
+    </style>
+  </head>
+  <body>
+  <ul>
+
+  <% if session[:user_id] %>
+      <li style="color: white;">
+      Logged in as <strong><%= @user.username %></strong>.
+      <%= link_to 'Logout', user_logout_path, method: :delete %>
+      </li>
+      <li><a class="active" ></a></li>
+      <li><%= link_to 'Home',customers_index_path %></li>
+      <li><%= link_to 'Profile' %></li>
+      <li><%= link_to 'Order History' %></li>
+      <li><%= link_to 'Restaurants' %></li>
+
+    <% else %>
+      <li><a class="active"></a></li>
+      <li><%= link_to 'Home',root_path %></li>
+      <li><%= link_to ' Signup ', new_signup_path %></li>
+      <li><%= link_to 'Login ', login_path %></li>
+    <% end %>
+  </ul>
+  
+  </body>
+</html>
