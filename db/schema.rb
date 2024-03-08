@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_01_134633) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_07_151622) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_134633) do
   create_table "customers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "contact"
   end
 
   create_table "items", force: :cascade do |t|
@@ -61,10 +62,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_134633) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "owners", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "price"
+    t.integer "item_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "address"
+    t.integer "customer_id"
+    t.integer "contact"
+    t.string "name"
+  end
+
+  create_table "owner_details", force: :cascade do |t|
     t.string "username"
+    t.integer "contact"
     t.string "email"
-    t.string "password_digest"
+    t.string "r_name"
+    t.string "r_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "status", default: false
+  end
+
+  create_table "owners", force: :cascade do |t|
     t.string "contact"
     t.string "r_name"
     t.string "r_address"
@@ -78,6 +100,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_134633) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
   end
 
   create_table "staffs", force: :cascade do |t|
@@ -96,6 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_134633) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "contact"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

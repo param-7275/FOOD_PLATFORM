@@ -1,4 +1,5 @@
 <%= render partial: 'partials/header' %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,19 +20,23 @@
 </style>
 </head>
 <body>
-<h1>Owners Details</h1>
+<h1>Accepted Requests</h1>
 <table>
   <tr>
-    <th>Owner Name</th>
+    <th>Userame</th>
+    <th>Email</th>
+    <th>Contact</th>
     <th>Restaurant Name</th>
-    <th>Actions</th>
+    <th>Restaurant Address</th>
   </tr>
 
-  <% @owners.each do |owner| %>
+  <% @showupdaterequest.each do |showupdaterequest| %>
     <tr>
-      <td><%= owner.username  %></td>
-      <td><%= owner.restaurant&.name %></td>
-      <td><%= button_to 'Delete'%></td>
+      <td><%= showupdaterequest.username  %></td>
+      <td><%= showupdaterequest.email %></td>
+      <td><%= showupdaterequest.contact %></td>
+      <td><%= showupdaterequest.r_name %></td>
+      <td><%= showupdaterequest.r_address %></td>
     </tr>
   <% end %>
 </table>

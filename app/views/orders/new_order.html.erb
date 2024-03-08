@@ -1,0 +1,106 @@
+<%= render partial: 'partials/customerheader' %>
+<!DOCTYPE html>
+<html>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery library -->
+  <script>
+    $(document).ready(function() {
+      $(document).on("input", "#quantity", function() {
+        if 
+        var quantity = parseInt($(this).val());
+        var price = parseFloat($(this).closest(".item").find("#item-price").text());
+        var total = quantity * price;
+        $(this).closest(".item").find("#total-amount")?.text(total?.toFixed(2));
+      });
+    });
+  </script>
+  <style>
+    /* Add CSS styles for item display */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .item {
+      width: 30%;
+      margin: 10px;
+      padding: 10px;
+      background-color: #f0f0f0; /* Light gray background */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    }
+
+    h2 {
+      color: #333; /* Dark gray text color */
+    }
+
+    p {
+      color: #666; /* Medium gray text color */
+    }
+
+    .price {
+      color: #009688; /* Green text color for price */
+      font-weight: bold;
+    }
+
+    @media screen and (max-width: 992px) {
+      .item {
+        width: 45%;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .item {
+        width: 90%;
+      }
+    }
+  </style>
+  <head>
+    <title>Items</title>
+  </head>
+  <body>
+    <%= form_with(model: @order, url: create_order_path, method: :post, remote: true) do |form| %>
+      <div class="container">
+        <div class="item">
+          <% if @item.image.attached? %>
+            <%= image_tag(@item.image, size: '160x150') %>
+          <% else %>
+            <p>No image available</p>
+          <% end %>
+          <h2><%= @item.name %></h2>
+          <p><%= @item.description %></p>
+          <p>Price: <span id="item-price"><%= @item.price %></span></p>
+          <%= form.hidden_field :item_id, value: @item.id %>
+          <!-- Include hidden field for item_id -->
+
+          <label for="quantity">Quantity:</label>
+          <button type="button" id="decrease-quantity">-</button>
+          <input type="number" id="quantity" name="order[quantity]" value="1" min="1">
+          <button type="button" id="add-item-button">+</button>
+          <div>
+            <p>Total Amount: <span id="total-amount"><%= @item.price %></span></p>
+          </div>
+          <br>
+          <div>
+            <%= form.label :name %>
+            <%= form.text_field :name %>
+          </div>
+          <br>
+          <div>
+            <%= form.label :contact %>
+            <%= form.text_field :contact %>
+          </div>
+          <br>
+          <div>
+            <%= form.label :address %>
+            <%= form.text_area :address %>
+          </div>
+        <br>
+        <div>
+          <%= form.submit "Place Order" %>
+        </div>
+      </div>
+    <% end %>
+
+  </body>
+</html>

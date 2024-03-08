@@ -1,0 +1,54 @@
+<%= render partial: 'partials/ownerheader' %>
+
+<h1>Delivered Orders for <%= @restaurant.name.capitalize %></h1>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+</head>
+<body>
+<table>
+  <tr>
+    <th>Order ID</th>
+    <th>Customer Name</th>
+    <th>Price</th>
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Address</th>
+    <th>Contact</th>
+    <th>Status</th>
+    <th>Delivered Date</th>
+  </tr>
+
+  <% @delivered_orders.each do |order| %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.name %></td>
+      <td><%= order.price %> ₹</td>
+      <td><%= order.item.name %></td>
+      <td><%= order.quantity %></td>
+      <td><%= order.address %></td>
+      <td><%= order.contact %></td>
+      <td><%= order.status %></td>
+      <td><%= order.updated_at %></td>
+    </tr>
+  <% end %> 
+</table>
+</body>
+</html>

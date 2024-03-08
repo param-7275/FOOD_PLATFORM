@@ -32,6 +32,11 @@
     <tr>
       <td><%= restaurant.name  %></td>
       <td><%= restaurant.address %></td>
+      <td><% if restaurant.image.attached? %>
+      <%= image_tag(restaurant.image, size: '50x50') %>
+      <% else %>
+      <p>No image available</p>
+      <% end %></td>
       <td><%= button_to 'Delete'%></td>
     </tr>
   <h3>We Have Total <%= restaurant.staff.count %> Staff And <%= restaurant.items.count %> Items Of Variety. </h3>

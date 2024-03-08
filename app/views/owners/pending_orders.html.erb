@@ -1,0 +1,56 @@
+<%= render partial: 'partials/ownerheader' %>
+
+<h1>Pending Orders for <%= @restaurant.name.capitalize %></h1>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+</head>
+<body>
+<table>
+  <tr>
+    <th>Order ID</th>
+    <th>Customer Name</th>
+    <th>Price</th>
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Address</th>
+    <th>Contact</th>
+    <th>Status</th>
+    <th>Order Date</th>
+    <th>Action</th>
+  </tr>
+
+  <% @pending_orders.each do |order| %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.name %></td>
+      <td><%= order.price %> ₹</td>
+      <td><%= order.item.name %></td>
+      <td><%= order.quantity %></td>
+      <td><%= order.address %></td>
+      <td><%= order.contact %></td>
+      <td><%= order.status %></td>
+      <td><%= order.created_at %></td>
+      <td><%= link_to 'Accept', order_update_path(order) , method: :patch%></td>
+    </tr>
+  <% end %> 
+</table>
+</body>
+</html>

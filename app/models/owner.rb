@@ -1,4 +1,6 @@
 class Owner < User
-	has_secure_password
-	has_one :restaurant , dependent: :destroy
+  	has_one :restaurant , dependent: :destroy
+  # def initialize(attributes = nil)
+  #   super(attributes.except(:password, :password_confirmation))
+  # end
 end

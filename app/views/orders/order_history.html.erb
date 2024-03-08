@@ -1,0 +1,73 @@
+<%= render partial: 'partials/customerheader' %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Items</title>
+  <style>
+    /* Add CSS styles for item display */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .item {
+      width: 30%;
+      margin: 10px;
+      padding: 10px;
+      background-color: #f0f0f0; /* Light gray background */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    }
+
+    h2 {
+      color: #333; /* Dark gray text color */
+    }
+
+    p {
+      color: #666; /* Medium gray text color */
+    }
+
+    .price {
+      color: #009688; /* Green text color for price */
+      font-weight: bold;
+    }
+
+    @media screen and (max-width: 992px) {
+      .item {
+        width: 45%;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .item {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+  <body>
+    <div class="container">
+      <% @order.each do |order| %>
+        <div class="item">
+          <% if order.item.image.attached? %>
+            <%= image_tag(order.item.image, size: '240x180') %>
+          <% else %>
+            <p>No image available</p>
+          <% end %>
+          <h2>Restaurant : <%= order.item.restaurant.name %></h2>
+          <h3>Restaurant Contact : <%= order.item.restaurant.owner.contact %></h3>
+          <h4><%= order.item.name %></h4>
+          <p>Price : <%= order.price %></p>
+          <p>Quantity : <%= order.quantity %></p>
+          <p>Order Date : <%= order.created_at %></p>
+          <p>Details : <%= order.item.description %></p>
+          <p>Status : <%= order.status %></p>
+          <% if order.status == "Delivered" %>
+            <%= link_to 'Generate Invoice' , generate_invoice_path(item_id: order.item_id) , method: :get %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>  
+  </body>
+</html>

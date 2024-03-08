@@ -1,0 +1,46 @@
+<%= render partial: 'partials/header' %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+</head>
+<body>
+<h1>All Requests</h1>
+<table>
+  <tr>
+    <th>Userame</th>
+    <th>Email</th>
+    <th>Contact</th>
+    <th>Restaurant Name</th>
+    <th>Restaurant Address</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @showrequest.each do |showrequest| %>
+    <tr>
+      <td><%= showrequest.username  %></td>
+      <td><%= showrequest.email %></td>
+      <td><%= showrequest.contact %></td>
+      <td><%= showrequest.r_name %></td>
+      <td><%= showrequest.r_address %></td>
+      <td><%= link_to 'Accept', request_update_path(showrequest), method: :patch%><br> <%= button_to 'Reject',delete_request_path(showrequest),method: :delete%></td>
+    </tr>
+  <% end %>
+</table>
+</body>
+</html>

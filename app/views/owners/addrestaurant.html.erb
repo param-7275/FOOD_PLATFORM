@@ -167,6 +167,12 @@ input:focus{
     <%= form.text_field :address, placeholder: 'Restaurant Address', required: true %>
   </div>
   <br>
+  <%= form.label :image  %>
+  <div class="row">
+    <div class="icon"></div>
+    <%= form.file_field :image, placeholder: 'Item Image '%>
+  </div>
+  <br>
   <button type="submit">Add</button>
   <%= link_to owner_index_path do %>
     <button type="button">GoTo Home</button>

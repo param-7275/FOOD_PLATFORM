@@ -1,0 +1,38 @@
+<%= render partial: 'partials/header' %>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+</head>
+<body>
+<h1>Owners Details</h1>
+<table>
+  <tr>
+    <th>Owner Name</th>
+    <th>Restaurant Name</th>
+    <th>Actions</th>
+  </tr>
+  <% @owners.each do |owner| %>
+    <tr>
+      <td><%= owner.username  %></td>
+      <td><%= owner.restaurant&.name %></td>
+      <td><%= button_to 'Delete',delete_owner_path(owner) , method: :delete%></td>
+    </tr>
+  <% end %>
+</table>
+</body>
+</html>

@@ -1,0 +1,2 @@
+module OwnerdetailsHelper
+end
